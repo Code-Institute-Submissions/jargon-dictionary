@@ -1,0 +1,4 @@
+venv/
+old_templates/
+.vscode/
+requirements.txt
