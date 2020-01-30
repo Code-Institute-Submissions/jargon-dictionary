@@ -9,6 +9,10 @@ app.config["MONGO_URI"] = os.getenv("JARGON_URI")
 
 mongo = PyMongo(app)
 
+@app.route('/')
+def get_defintions():
+    return render_template("definitions.html", definitions=mongo.db.jargon.find())
+
 @app.route('/add-definintion.html')
 def add_definition():
     return render_template('add-definition.html')

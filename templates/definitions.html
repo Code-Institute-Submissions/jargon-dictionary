@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h1>Definitions</h1>
+
+
+{% for definition in definitions %}
+<h2>{{definition.word}}</h2>
+<p>{{definition.definition}}</p>
+{% endfor %}
+
+
+
+{% endblock %}
