@@ -24,6 +24,13 @@ def insert_definition():
     definitions.insert(request.form.to_dict())
     return redirect(url_for('get_defintions'))
 
+@app.route('/edit_definition/<definition_id>')
+def edit_definition(definition_id):
+    definition =  mongo.db.jargon.find_one({"_id": ObjectId(definition_id)})
+    print(definition)
+    return render_template('edit-definition.html', definition=definition)
+
+
 
 # run the app.
 if __name__ == "__main__":
