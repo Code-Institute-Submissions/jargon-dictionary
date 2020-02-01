@@ -22,13 +22,17 @@ def add_definition():
 def insert_definition():
     definitions = mongo.db.jargon
     definitions.insert(request.form.to_dict())
-    return redirect(url_for('get_defintions'))
+    return redirect(url_for('get_definitions'))
 
 @app.route('/edit_definition/<definition_id>')
 def edit_definition(definition_id):
     definition =  mongo.db.jargon.find_one({"_id": ObjectId(definition_id)})
-    print(definition)
     return render_template('edit-definition.html', definition=definition)
+
+@app.route('/delete_definition/<definition_id>')
+def delete_definition(definition_id):
+    mongo.db.jargon.remove({"_id": ObjectId(definition_id)})
+    return redirect(url_for('get_definitions'))
 
 
 @app.route('/update_definition/<definition_id>', methods=["POST"])
