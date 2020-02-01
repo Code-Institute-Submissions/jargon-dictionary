@@ -13,7 +13,7 @@ mongo = PyMongo(app)
 def get_defintions():
     return render_template("definitions.html", definitions=mongo.db.jargon.find())
 
-@app.route('/add-definintion.html')
+@app.route('/add_definition')
 def add_definition():
     return render_template('add-definition.html')
 
