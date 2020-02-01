@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<form action="{{ url_for('insert_definition') }}" method="POST">
+<form action="{{ url_for('update_definition', definition_id=definition._id) }}" method="POST">
     <div class="form-group">
         <label for="word">Word</label>
         <input name="word" type="text" class="form-control" id="word" 

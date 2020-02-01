@@ -10,7 +10,7 @@ app.config["MONGO_URI"] = os.getenv("JARGON_URI")
 mongo = PyMongo(app)
 
 @app.route('/')
-def get_defintions():
+def get_definitions():
     return render_template("definitions.html", definitions=mongo.db.jargon.find())
 
 @app.route('/add_definition')
@@ -31,6 +31,15 @@ def edit_definition(definition_id):
     return render_template('edit-definition.html', definition=definition)
 
 
+@app.route('/update_definition/<definition_id>', methods=["POST"])
+def update_definition(definition_id):
+    definitions = mongo.db.jargon
+    definitions.update( {'_id': ObjectId(definition_id)},
+    {
+        'word':request.form.get('word'),
+        'definition':request.form.get('definition'),
+    })
+    return redirect(url_for('get_definitions'))
 
 # run the app.
 if __name__ == "__main__":
