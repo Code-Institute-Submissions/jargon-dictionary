@@ -10,10 +10,13 @@ app.config["MONGO_URI"] = os.getenv("JARGON_URI")
 mongo = PyMongo(app)
 
 
-@app.route('/')
-def get_definitions():
-    return render_template("index.html", definitions=mongo.db.jargon.find())
+# @app.route('/')
+# def get_definitions():
+#     return render_template("index.html", definitions=mongo.db.jargon.find())
 
+@app.route('/')
+def get_categories():
+    return render_template('index.html', categories=mongo.db.category.find())
 
 @app.route('/add_definition')
 def add_definition():
