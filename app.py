@@ -10,15 +10,18 @@ app.config["MONGO_URI"] = os.getenv("JARGON_URI")
 mongo = PyMongo(app)
 
 
-# @app.route('/')
-# def get_definitions():
-#     return render_template("index.html", definitions=mongo.db.jargon.find())
 
+# Index
 @app.route('/')
 def get_categories():
     return render_template('index.html', categories=mongo.db.category.find())
 
-@app.route('/add_definition')
+# Dynamic URLs for getting definitions based on category
+@app.route('/get_definitions/<category>')
+def get_definitions(category):
+    return render_template("definitions.html", definitions=mongo.db.jargon.find({"category" : category}))
+
+@app.route('/add_definitions')
 def add_definition():
     return render_template('add-definition.html')
 
@@ -33,7 +36,8 @@ def insert_definition():
 @app.route('/edit_definition/<definition_id>')
 def edit_definition(definition_id):
     definition = mongo.db.jargon.find_one({"_id": ObjectId(definition_id)})
-    return render_template('edit-definition.html', definition=definition)
+    categories = categories=mongo.db.category.find()
+    return render_template('edit-definition.html', definition=definition, categories=categories)
 
 
 @app.route('/delete_definition/<definition_id>')
