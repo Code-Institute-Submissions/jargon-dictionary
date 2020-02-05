@@ -23,7 +23,8 @@ def get_definitions(category):
 
 @app.route('/add_definitions')
 def add_definition():
-    return render_template('add-definition.html')
+    categories = categories=mongo.db.category.find()
+    return render_template('add-definition.html',  categories=categories)
 
 
 @app.route('/insert_definition', methods=['POST'])
