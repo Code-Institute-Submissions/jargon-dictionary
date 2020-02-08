@@ -11,12 +11,14 @@
     <div class="row">
         {% for category in categories %}
 
-        <div class="col-4">
+        <div class="col-md-4 pt-2">
             <div class="card">
                 <div class="card-body text-center">
                     <h4 class="card-title ">{{category.name}} Deck</h4>
                     <p class="card-text">{{category.description}}</p>
                     <a href="{{url_for('get_definitions', category=category.name)}}" class="card-link">See Deck</a>
+                    <a href="{{url_for('get_definitions', category=category.name)}}" class="card-link">Edit Deck</a>
+                    <a href="{{url_for('get_definitions', category=category.name)}}" class="card-link">Delete Deck</a>
                 </div>
             </div>
         </div>

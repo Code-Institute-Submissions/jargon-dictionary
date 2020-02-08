@@ -31,7 +31,7 @@ def add_definition():
 def insert_definition():
     definitions = mongo.db.jargon
     definitions.insert(request.form.to_dict())
-    return redirect(url_for('get_definitions'))
+    return redirect(url_for('get_decks'))
 
 
 @app.route('/edit_definition/<definition_id>')
@@ -44,7 +44,7 @@ def edit_definition(definition_id):
 @app.route('/delete_definition/<definition_id>')
 def delete_definition(definition_id):
     mongo.db.jargon.remove({"_id": ObjectId(definition_id)})
-    return redirect(url_for('get_definitions'))
+    return redirect(url_for('get_decks'))
 
 
 @app.route('/update_definition/<definition_id>', methods=["POST"])
@@ -56,7 +56,20 @@ def update_definition(definition_id):
         'word': request.form.get('word'),
         'definition': request.form.get('definition'),
     })
-    return redirect(url_for('get_definitions'))
+    return redirect(url_for('get_decks'))
+
+# DEFINITIONS ENDS HERE
+
+# DECK STARTS HERE
+@app.route('/add_deck')
+def add_deck():
+     return render_template('add-deck.html')
+
+@app.route('/insert_deck', methods=['POST'])
+def insert_deck():
+    decks = mongo.db.category
+    decks.insert(request.form.to_dict())
+    return redirect(url_for('get_decks'))
 
 
 # run the app.
