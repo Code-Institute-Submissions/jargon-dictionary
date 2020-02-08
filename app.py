@@ -13,7 +13,7 @@ mongo = PyMongo(app)
 
 # Index
 @app.route('/')
-def get_categories():
+def get_decks():
     return render_template('index.html', categories=mongo.db.category.find())
 
 # Dynamic URLs for getting definitions based on category
