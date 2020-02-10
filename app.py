@@ -10,7 +10,6 @@ app.config["MONGO_URI"] = os.getenv("JARGON_URI")
 mongo = PyMongo(app)
 
 
-
 # Index
 @app.route('/')
 def get_decks():
@@ -19,11 +18,12 @@ def get_decks():
 # Dynamic URLs for getting definitions based on category
 @app.route('/get_definitions/<category>')
 def get_definitions(category):
-    return render_template("definitions.html", definitions=mongo.db.jargon.find({"category" : category}))
+    return render_template("definitions.html", definitions=mongo.db.jargon.find({"category": category}))
+
 
 @app.route('/add_definitions')
 def add_definition():
-    categories = categories=mongo.db.category.find()
+    categories = mongo.db.category.find()
     return render_template('add-definition.html',  categories=categories)
 
 
@@ -37,14 +37,8 @@ def insert_definition():
 @app.route('/edit_definition/<definition_id>')
 def edit_definition(definition_id):
     definition = mongo.db.jargon.find_one({"_id": ObjectId(definition_id)})
-    categories = categories=mongo.db.category.find()
+    categories = categories = mongo.db.category.find()
     return render_template('edit-definition.html', definition=definition, categories=categories)
-
-
-@app.route('/delete_definition/<definition_id>')
-def delete_definition(definition_id):
-    mongo.db.jargon.remove({"_id": ObjectId(definition_id)})
-    return redirect(url_for('get_decks'))
 
 
 @app.route('/update_definition/<definition_id>', methods=["POST"])
@@ -58,17 +52,42 @@ def update_definition(definition_id):
     })
     return redirect(url_for('get_decks'))
 
+
+@app.route('/delete_definition/<definition_id>')
+def delete_definition(definition_id):
+    mongo.db.jargon.remove({"_id": ObjectId(definition_id)})
+    return redirect(url_for('get_decks'))
+
 # DEFINITIONS ENDS HERE
 
 # DECK STARTS HERE
 @app.route('/add_deck')
 def add_deck():
-     return render_template('add-deck.html')
+    return render_template('add-deck.html')
+
 
 @app.route('/insert_deck', methods=['POST'])
 def insert_deck():
     decks = mongo.db.category
     decks.insert(request.form.to_dict())
+    return redirect(url_for('get_decks'))
+
+
+@app.route('/edit_deck/<deck_name>')
+def edit_deck(deck_name):
+    deck = mongo.db.category.find_one({"name": deck_name})
+    return render_template('edit-deck.html', deck=deck)
+
+
+@app.route('/update_deck/<deck_id>', methods=["POST"])
+def update_deck(deck_id):
+    print(deck_id)
+    deck = mongo.db.category.find_one({"name": deck_id})
+    print(deck)
+    deck.update({
+        'name': request.form.get('name'),
+        'description': request.form.get('description'),
+    })
     return redirect(url_for('get_decks'))
 
 
