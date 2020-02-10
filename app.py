@@ -21,7 +21,7 @@ def get_definitions(category):
     return render_template("definitions.html", definitions=mongo.db.jargon.find({"category": category}))
 
 
-@app.route('/add_definitions')
+@app.route('/add_definition')
 def add_definition():
     categories = mongo.db.category.find()
     return render_template('add-definition.html',  categories=categories)
@@ -44,11 +44,11 @@ def edit_definition(definition_id):
 @app.route('/update_definition/<definition_id>', methods=["POST"])
 def update_definition(definition_id):
     definitions = mongo.db.jargon
-
     definitions.update({'_id': ObjectId(definition_id)},
                        {
         'word': request.form.get('word'),
         'definition': request.form.get('definition'),
+        'category' : request.form.get('category')
     })
     return redirect(url_for('get_decks'))
 
