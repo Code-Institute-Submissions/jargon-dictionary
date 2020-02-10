@@ -17,7 +17,7 @@
                     <h4 class="card-title ">{{category.name}} Deck</h4>
                     <p class="card-text">{{category.description}}</p>
                     <a href="{{url_for('get_definitions', category=category.name)}}" class="card-link">See Deck</a>
-                    <a href="{{url_for('get_definitions', category=category.name)}}" class="card-link">Edit Deck</a>
+                    <a href="{{url_for('edit_deck', deck_name=category.name)}}" class="card-link">Edit Deck</a>
                     <a href="{{url_for('get_definitions', category=category.name)}}" class="card-link">Delete Deck</a>
                 </div>
             </div>
