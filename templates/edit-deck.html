@@ -3,7 +3,8 @@
 {% block content %}
 
 <h1>Edit Deck</h1>
-<form action="{{ url_for('update_deck', deck_id=deck.name) }}" method="POST">
+<form action="{{ url_for('update_deck', deck_id=deck._id) }}" method="POST">
+    <h2>{{deck._id}}</h2>
     <div class="form-group">
         <label for="name">Deck Name</label>
         <input name="name" type="text" class="form-control" id="name" 

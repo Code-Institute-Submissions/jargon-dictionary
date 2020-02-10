@@ -37,7 +37,7 @@ def insert_definition():
 @app.route('/edit_definition/<definition_id>')
 def edit_definition(definition_id):
     definition = mongo.db.jargon.find_one({"_id": ObjectId(definition_id)})
-    categories = categories = mongo.db.category.find()
+    categories = mongo.db.category.find()
     return render_template('edit-definition.html', definition=definition, categories=categories)
 
 
@@ -48,7 +48,7 @@ def update_definition(definition_id):
                        {
         'word': request.form.get('word'),
         'definition': request.form.get('definition'),
-        'category' : request.form.get('category')
+        'category': request.form.get('category')
     })
     return redirect(url_for('get_decks'))
 
@@ -73,20 +73,20 @@ def insert_deck():
     return redirect(url_for('get_decks'))
 
 
-@app.route('/edit_deck/<deck_name>')
-def edit_deck(deck_name):
-    deck = mongo.db.category.find_one({"name": deck_name})
-    return render_template('edit-deck.html', deck=deck)
+@app.route('/edit_deck/<deck_id>')
+def edit_deck(deck_id):
+    deck_id = mongo.db.category.find_one({"_id": ObjectId(deck_id)})
+    print(deck_id)
+    return render_template('edit-deck.html', deck=deck_id)
 
 
 @app.route('/update_deck/<deck_id>', methods=["POST"])
 def update_deck(deck_id):
-    print(deck_id)
-    deck = mongo.db.category.find_one({"name": deck_id})
-    print(deck)
-    deck.update({
+    decks = mongo.db.category
+    decks.update({'_id': ObjectId(deck_id)},
+                 {
         'name': request.form.get('name'),
-        'description': request.form.get('description'),
+        'description': request.form.get('description')
     })
     return redirect(url_for('get_decks'))
 
