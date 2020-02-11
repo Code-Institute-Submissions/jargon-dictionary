@@ -92,6 +92,8 @@ def update_deck(deck_id):
 
 @app.route('/delete_deck/<deck_id>')
 def delete_deck(deck_id):
+    deck = mongo.db.category.find_one({"_id": ObjectId(deck_id)}) # used to find definitions
+    mongo.db.jargon.remove({"category": deck.get('name')})
     mongo.db.category.remove({"_id": ObjectId(deck_id)})
     return redirect(url_for('get_decks'))
 
