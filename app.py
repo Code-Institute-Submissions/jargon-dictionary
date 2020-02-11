@@ -47,11 +47,15 @@ def edit_definition(definition_id):
 @app.route('/update_definition/<definition_id>', methods=["POST"])
 def update_definition(definition_id):
     definitions = mongo.db.jargon
+    current_definition = mongo.db.jargon.find_one({"_id": ObjectId(definition_id)})
+    word = request.form.get('word') if request.form.get('word') else current_definition.get('word') 
+    definition = request.form.get('definition') if request.form.get('definition') else current_definition.get('definition') 
+    category = request.form.get('category') if request.form.get('category') else current_definition.get('category') 
     definitions.update({'_id': ObjectId(definition_id)}, # Needed for update 
                        {
-        'word': request.form.get('word'), # pulls word from form id
-        'definition': request.form.get('definition'),
-        'category': request.form.get('category')
+        'word': word, # pulls word from form id
+        'definition': definition,
+        'category': category
     })
     return redirect(url_for('get_decks'))
 
@@ -87,13 +91,16 @@ def edit_deck(deck_id):
 
 
 # Updates deck in DB takes deck_id to use for update and accepts POST
-@app.route('/update_deck/<deck_id>', methods=["POST"])
-def update_deck(deck_id):
+@app.route('/update_deck/<deck>', methods=["POST"])
+def update_deck(deck):
     decks = mongo.db.category
-    decks.update({'_id': ObjectId(deck_id)},
+    deck = mongo.db.category.find_one({"_id": ObjectId(deck)})
+    name = request.form.get('name') if request.form.get('name') else deck.get('name') # Assigns name value if updated in form else keeps old value
+    description = request.form.get('description') if request.form.get('description') else deck.get('description') #Assigns description value if updated in form else keeps old value
+    decks.update({'_id': ObjectId(deck.get('_id'))},
                  {
-        'name': request.form.get('name'),
-        'description': request.form.get('description')
+        'name': name,
+        'description': description
     })
     return redirect(url_for('get_decks'))
 
