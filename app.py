@@ -90,6 +90,10 @@ def update_deck(deck_id):
     })
     return redirect(url_for('get_decks'))
 
+@app.route('/delete_deck/<deck_id>')
+def delete_deck(deck_id):
+    mongo.db.category.remove({"_id": ObjectId(deck_id)})
+    return redirect(url_for('get_decks'))
 
 # run the app.
 if __name__ == "__main__":
