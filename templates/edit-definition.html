@@ -12,7 +12,16 @@
             <input name="definition" type="text" class="form-control" id="definition"
                 placeholder="{{definition.definition}}">
         </div>
+        <div class="form-group">
+            <label for="category">Select Deck</label>
+            <select name="category" class="form-control">
+              {% for category in categories %}
+              <option id="category">{{category.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="text-light" href="{{url_for('get_definitions', category='category.name')}}" class="card-link"><button type="button" class="btn btn-dark">Cancel</button></a>
     </form>
 </div>
 
