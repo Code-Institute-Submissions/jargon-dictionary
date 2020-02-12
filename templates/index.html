@@ -16,13 +16,13 @@
                 <div class="card-body">
                     
                     <p class="card-text">{{category.description}}</p>
-                    <button type="button" class="btn btn-secondary"><a class="text-white"
+                    <button  type="button" class="btn btn-secondary my-1"><a class="text-white"
                             href="{{url_for('get_definitions', category=category.name)}}" class="card-link">See
                             Deck</a></button>
-                    <button type="button" class="btn btn-info"><a class="text-white"
+                    <button type="button" class="btn btn-info my-1"><a class="text-white"
                             href="{{url_for('edit_deck', deck_id=category._id, deck=category.name)}}"
                             class="card-link">Edit Deck</a></button>
-                    <button type="button" class="btn btn-danger"><a class="text-white"
+                    <button type="button" class="btn btn-danger my-1"><a class="text-white"
                             href="{{url_for('delete_deck', deck_id=category._id)}}" class="card-link">Delete
                             Deck</a></button>
 

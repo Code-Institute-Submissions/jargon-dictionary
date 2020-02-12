@@ -20,7 +20,7 @@ def get_decks():
 # Dynamic URL for getting definitions based on category
 @app.route('/get_definitions/<category>')
 def get_definitions(category):
-    return render_template("definitions.html", definitions=mongo.db.jargon.find({"category": category}))
+    return render_template("definitions.html", category=category, definitions=mongo.db.jargon.find({"category": category}))
 
 #URL to add definitions
 @app.route('/add_definition')
