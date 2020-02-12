@@ -57,7 +57,7 @@ def update_definition(definition_id):
         'definition': definition,
         'category': category
     })
-    return redirect(url_for('get_decks'))
+    return redirect(url_for('get_definitions', category=category))
 
 # Deletes definition in DB
 @app.route('/delete_definition/<definition_id>')
