@@ -6,13 +6,15 @@
     <h1>Add Deck</h1>
 
     <form action="{{ url_for('insert_deck') }}" method="POST">
-        <div class="form-group">
+        <div class="form-group name">
             <label for="name">Deck</label>
             <input name="name" type="text" class="form-control" id="name" placeholder="Enter Deck Name">
+            <p class="deck-name-check red p-1"></p>
         </div>
-        <div class="form-group">
+        <div class="form-group description">
             <label for="description">Deck Purpose</label>
             <input name="description" type="text" class="form-control" id="description" placeholder="Deck Purpose">
+            <p class="deck-description-check red p-1"></p>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a class="text-light" href="{{url_for('get_decks')}}" class="card-link"><button type="button" class="btn btn-dark">Cancel</button></a>
