@@ -86,7 +86,6 @@ def insert_deck():
 @app.route('/edit_deck/<deck_id>')
 def edit_deck(deck_id):
     deck_id = mongo.db.category.find_one({"_id": ObjectId(deck_id)}) 
-    print(deck_id)
     return render_template('edit-deck.html', deck=deck_id)
 
 
