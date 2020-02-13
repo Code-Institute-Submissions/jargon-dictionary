@@ -1,4 +1,4 @@
-function checkDesc(){
+function checkDesc() {
     if ($('#description').val() === "") {
         return false;
     } else {
@@ -13,11 +13,27 @@ function checkName() {
         return true;
     }
 }
-$(document).ready(function(){
-// Event Listeners
+
+function checkWord() {
+    if ($('#word').val() === "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkDefinition() {
+    if ($('#definition').val() === "") {
+        return false;
+    } else {
+        return true;
+    }
+}
+$(document).ready(function () {
+    // Event Listeners
 
 
-    // Checks to see if form has been filled correctly
+    // Checks to see if name is empty. 
     $('.name').on("change focusout", () => {
         if (checkName() == true) {
             $('#name').css("border", "2px solid green");
@@ -27,7 +43,8 @@ $(document).ready(function(){
             $('.deck-name-check').html('Please enter a deck name')
         }
     });
-    
+
+    //Checks to see if description is empty. 
     $('.description').on("change focusout", () => {
         if (checkDesc()) {
             $('#description').css("border", "2px solid green");
@@ -38,8 +55,31 @@ $(document).ready(function(){
         }
     })
 
-    
-    
+
+    //Checks to see if description is empty. 
+    $('.word').on("change focusout", () => {
+        if (checkWord()) {
+            $('#word').css("border", "2px solid green");
+            $('.word-check').html('')
+        } else {
+            $('#word').css("border", "2px solid red");
+            $('.word-check').html('Please enter a word');
+        }
+    })
+
+     //Checks to see if description is empty. 
+     $('.definition').on("change focusout", () => {
+        if (checkDefinition()) {
+            $('#definition').css("border", "2px solid green");
+            $('.definition-check').html('')
+        } else {
+            $('#definition').css("border", "2px solid red");
+            $('.definition-check').html('Please enter a word');
+        }
+    })
+
+
+
+
+
 });
-
-
