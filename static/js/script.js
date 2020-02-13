@@ -1,3 +1,4 @@
+// Checks to see if description is empty yes return false else true
 function checkDesc() {
     if ($('#description').val() === "") {
         return false;
@@ -5,7 +6,7 @@ function checkDesc() {
         return true;
     }
 }
-
+// Checks to see if name is empty yes return false else true
 function checkName() {
     if ($('#name').val() === "") {
         return false;
@@ -14,6 +15,7 @@ function checkName() {
     }
 }
 
+// Checks to see if word is empty yes return false else true
 function checkWord() {
     if ($('#word').val() === "") {
         return false;
@@ -22,6 +24,7 @@ function checkWord() {
     }
 }
 
+// Checks to see if definition is empty yes return false else true
 function checkDefinition() {
     if ($('#definition').val() === "") {
         return false;
@@ -67,8 +70,8 @@ $(document).ready(function () {
         }
     })
 
-     //Checks to see if description is empty. 
-     $('.definition').on("change focusout", () => {
+    //Checks to see if description is empty. 
+    $('.definition').on("change focusout", () => {
         if (checkDefinition()) {
             $('#definition').css("border", "2px solid green");
             $('.definition-check').html('')
