@@ -1,9 +1,12 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
+<div class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+        <h1 class="text-center">Add Deck</h1>
+    </div>
+</div>
 <div class="container">
-    <h1>Add Deck</h1>
 
     <form action="{{ url_for('insert_deck') }}" method="POST">
         <div class="form-group name">
@@ -17,7 +20,8 @@
             <p class="deck-description-check red p-1"></p>
         </div>
         <button type="submit" class="btn btn-primary hidden">Submit</button>
-        <a class="text-light" href="{{url_for('get_decks')}}" class="card-link"><button type="button" class="btn btn-dark ">Cancel</button></a>
+        <a class="text-light" href="{{url_for('get_decks')}}" class="card-link"><button type="button"
+                class="btn btn-dark ">Cancel</button></a>
     </form>
 </div>
 {% endblock %}

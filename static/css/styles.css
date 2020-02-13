@@ -5,3 +5,12 @@
 li{
     font-size: 1.25rem;
 }
+
+label{
+    font-size: 1.25rem;
+}
+
+.jumbotron {
+    background-image: url("../img/jumbotron_bg.jpg");
+    background-size: cover;
+  }

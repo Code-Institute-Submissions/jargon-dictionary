@@ -1,8 +1,13 @@
 {% extends 'base.html'%}
 
 {% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+        <h1 class="text-center">Edit Deck</h1>
+    </div>
+</div>
 <div class="container">
-    <h1>Edit Deck</h1>
     <form action="{{ url_for('update_deck', deck=deck._id) }}" method="POST">
         <div class="form-group">
             <label for="name">Deck Name</label>
