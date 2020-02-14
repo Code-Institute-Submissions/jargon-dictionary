@@ -66,13 +66,45 @@ Definitions can be created, read, updated and deleted allowing for users to add 
 
 # Testing 
 
+HTML was tested using the [ W3C HTML Validator](https://validator.w3.org/#validate_by_input)
 
+CSS was tested and validated using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator)
+
+#### Users must be able to add a new deck 
+ 
+-  Tested by clicking on add deck in the navbar and filling out the form a new deck appears on the home page. 
+
+#### Users must be able to remove a deck 
+
+- Tested by clicking delete button on the deck card the deck is removed. 
+
+#### Users must be able to edit a deck 
+
+- Tested by clicking edit button on the deck card the deck is removed. 
+#### Users must be able to see the collection of decks 
+
+- Users can see decks on the home page
+
+#### Users must be able to add definitions to decks 
+- Tested by clicking on add definition in the navbar and filling out the form a new definition appears under selected deck. 
+
+#### Users must be able to remove definitions from decks
+
+- Tested by clicking delete button on the definition card the definition is removed. 
+
+#### Users must be able to edit definitions 
+
+- Tested by clicking edit button on the definition card and filling out the form.
+
+#### Users must be able to see definitions that belong to a deck after 
+- Users can see definition cards after clicking on deck.
 
 # Deployment 
-
+ 
 
 ## Database 
 
+The database is hosted with MongoDB Atlas. To do do this I created a cluster, then a database and finally two collections category(deck) and jargon(definition).
 
 
 ## Web Application 

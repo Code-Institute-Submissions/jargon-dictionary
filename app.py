@@ -114,5 +114,5 @@ def delete_deck(deck_id):
 # run the application.
 if __name__ == "__main__":
     # Setting debug to below enables debug output. This line should be removed before deploying a production application.
-    application.debug = True
+    application.debug = False
     application.run()
